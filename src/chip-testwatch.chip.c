@@ -135,7 +135,7 @@ void chip_init(void) {
 
   chip->Vs_attr = attr_init_float("Vs", 12.0);
 
-
+printf( " %s\n","Chip Init started");
 
   // pwm timings
   unsigned long high_time_ENA;
@@ -276,10 +276,6 @@ void chip_pin_change(void *user_data, pin_t pin, uint32_t value) {
   uint8_t IN4 = pin_read(chip->pin_IN4);
 
   printf( " %s\n","on IN pins");
-
-
-
-
 printf( "   chip->speed_percent_A %d chip->speed_percent_B  %d\n",chip->speed_percent_A,chip->speed_percent_B);
 printf( "   previous_speed_percent_A  %d previous_speed_percent_B   %d\n",chip->previous_speed_percent_A,chip->previous_speed_percent_B);
 
