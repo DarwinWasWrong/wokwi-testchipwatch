@@ -1,4 +1,4 @@
-SOURCES = src/chip-modulel298.chip.c
+SOURCES = src/chip-testwatch.chip.c
 TARGET  = dist/chip.wasm
 TARBALL = chip.gz
 
@@ -23,8 +23,8 @@ dist/chip.json: dist chip.json
 	  apk add --update zip
 
 	  rm -f dist/chip.zip
-	  zip -9 dist/chip.zip dist/chip.wasm dist/chip.json 
-	    test/arduino-cli compile -e -b arduino:avr:uno test/blink
+	  zip -9 dist/chip.zip dist/chip.wasm dist/chip.json
+	 
 
 .PHONY: test
 test: 
