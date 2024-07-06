@@ -70,14 +70,17 @@ const pin_watch_config_t watch_config_b= {
     .user_data = chip
   };
 
-   // PWM watches
-  pin_watch(chip->pin_ENA, &watch_config_a);
-  pin_watch(chip->pin_ENB, &watch_config_b);
+   
+
   // pins watches
   pin_watch(chip->pin_IN1, &watch_config);
   pin_watch(chip->pin_IN2, &watch_config);
   pin_watch(chip->pin_IN3, &watch_config);
   pin_watch(chip->pin_IN4, &watch_config);
+
+// PWM watches
+   pin_watch(chip->pin_ENA, &watch_config_a);
+  pin_watch(chip->pin_ENB, &watch_config_b);
 }
 
 // PWM A pin change function for watch
