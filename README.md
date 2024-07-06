@@ -1,1 +1,1 @@
-Testin chip watch behaviour in make vs chip load
+Start of a method of displaying L298 on wokwi.
