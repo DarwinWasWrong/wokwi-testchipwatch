@@ -3,27 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// thanks to
-// Maverick - for saving my mind with PWM
-//
-// https://notisrac.github.io/FileToCArray/
-// for the conversion for images
-//
-// to be added
-// catch 0 and 255 in PWM
-
-
 typedef struct {
-  
+
  //Module Pins
   pin_t pin_IN1;
   pin_t pin_IN2;
   pin_t pin_IN3;
   pin_t pin_IN4;
+
   pin_t pin_ENA;
   pin_t pin_ENB;
 
- 
   unsigned long high_ENA;
   unsigned long low_ENA;
   unsigned long high_time_ENA;
@@ -33,26 +23,11 @@ typedef struct {
   unsigned long low_ENB;
   unsigned long high_time_ENB;
   unsigned long low_time_ENB;
-
-  uint32_t Vs_attr;  // power
-
-  uint32_t fb_w;
-  uint32_t fb_h;
-  uint32_t row;
-  buffer_t framebuffer;
-
-
   
   uint8_t  speed_percent_A;
   uint8_t  speed_percent_B;
   uint8_t  previous_speed_percent_A;
   uint8_t  previous_speed_percent_B;
-
-
-
-
-
-
 } chip_state_t;
 
 
@@ -64,6 +39,7 @@ static void chip_pinb_change(void *user_data, pin_t pin, uint32_t value);
 
 void chip_init(void) {
   chip_state_t *chip = malloc(sizeof(chip_state_t));
+
   chip->pin_ENA = pin_init("EN A",INPUT);
   chip->pin_ENB = pin_init("EN B",INPUT);
   chip->pin_IN1 = pin_init("IN1",INPUT);
@@ -85,13 +61,6 @@ void chip_init(void) {
   // dummy value to fire of percentage bar draw on start
   chip->previous_speed_percent_A= 10;
   chip->previous_speed_percent_B= 10;
-
-
-  // get the screen size
-  chip->framebuffer = framebuffer_init(&chip->fb_w, &chip->fb_h);
-  printf("Framebuffer: fb_w=%d, fb_h=%d\n", chip->fb_w, chip->fb_h);
- 
-
 
 // config for PWM A watch
 const pin_watch_config_t watch_config_a= {
