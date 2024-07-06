@@ -24,10 +24,24 @@ dist/chip.json: dist chip.json
 
 	  rm -f dist/chip.zip
 	  zip -9 dist/chip.zip dist/chip.wasm dist/chip.json
-	 
+	  apk add gcompat
+	  if [ ! -e ./arduino-cli ]; then \
+            wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_64bit.tar.gz; \
+            tar -xvf arduino-cli_latest_Linux_64bit.tar.gz; \
+			 ./arduino-cli core install arduino:avr; \
+      fi
+
+
+	  
+     
+	  ./arduino-cli compile -e -b arduino:avr:uno test/blink
 
 .PHONY: test
 test: 
 	  apk add gcompat
-      test/arduino-cli core install arduino:avr
-	  test/arduino-cli compile -e -b arduino:avr:uno test/blink
+	  if [ ! -e arduino-cli ]; then \
+            wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_64bit.tar.gz; \
+      fi
+
+      ./arduino-cli core install arduino:avr
+	  ./arduino-cli compile -e -b arduino:avr:uno test/blink
