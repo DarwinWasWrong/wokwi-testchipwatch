@@ -83,13 +83,13 @@ const pin_watch_config_t watch_config_b= {
 // PWM A pin change function for watch
 void chip_pin_change_PWM_A(void *user_data, pin_t pin, uint32_t value) {
   chip_state_t *chip = (chip_state_t*)user_data;
-  printf( "------ Pin Change A %d\n",ENA );
+    printf( " %s\n","on ENA pin ");
 }
 
 // PWM B pin change function for watch
 void chip_pinb_change(void *user_data, pin_t pin, uint32_t value) {
   chip_state_t *chip = (chip_state_t*)user_data;
-  printf( "------ Pin Change A %d\n",ENA );
+    printf( " %s\n","on ENB pin");
 }
 
 
